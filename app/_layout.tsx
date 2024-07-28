@@ -1,37 +1,61 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SplashScreen, Stack} from "expo-router";
+import { useFonts } from "expo-font";
+import AnimatedSplash from "react-native-animated-splash-screen";
+import SplashScreenComponent from "../components/SplashScreenComponent";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+const RootLayout = () => {
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    const [loaded, setLoaded] = useState(false);
 
-  if (!loaded) {
-    return null;
-  }
+    const [fontsLoaded, error] = useFonts({
+        "Urbanist Bold": require("../assets/fonts/Urbanist-Bold.ttf"),
+        "Urbanist SemiBold": require("../assets/fonts/Urbanist-SemiBold.ttf"),
+        "Urbanist Medium": require("../assets/fonts/Urbanist-Medium.ttf"),
+        "Urbanist Regular": require("../assets/fonts/Urbanist-Regular.ttf"),
+    });
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
-}
+    useEffect(() => {
+        if (error) throw error;
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+
+            setTimeout(() => {
+                setLoaded(true)
+            }, 1300)
+        }
+    }, [fontsLoaded, error]);
+
+    if (!fontsLoaded) return null;
+
+    return (
+        <>
+            <AnimatedSplash
+                translucent={true}
+                isLoaded={loaded}
+                logoImage={require("../assets/icons/logo.png")}
+
+                backgroundColor={"#9610FF"}
+                logoHeight={150}
+                logoWidth={150}
+                customComponent={<SplashScreenComponent/>}
+                >
+
+                <Stack>
+
+                    <Stack.Screen name="index" options={{headerShown: false}}/>
+                </Stack>
+
+
+            </AnimatedSplash>
+
+        </>
+    );
+};
+
+export default RootLayout;
+
+const styles = StyleSheet.create({});
