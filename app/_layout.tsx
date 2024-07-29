@@ -1,7 +1,7 @@
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SplashScreen, Stack} from "expo-router";
-import { useFonts } from "expo-font";
+import {useFonts} from "expo-font";
 import AnimatedSplash from "react-native-animated-splash-screen";
 import SplashScreenComponent from "../components/SplashScreenComponent";
 
@@ -25,7 +25,7 @@ const RootLayout = () => {
 
             setTimeout(() => {
                 setLoaded(true)
-            }, 1300)
+            }, 1300) // 1.3 seconds
         }
     }, [fontsLoaded, error]);
 
@@ -42,13 +42,14 @@ const RootLayout = () => {
                 logoHeight={150}
                 logoWidth={150}
                 customComponent={<SplashScreenComponent/>}
-                >
+            >
 
                 <Stack>
-
+                    <Stack.Screen name="walkthrough/index" options={{headerShown: false}}/>
                     <Stack.Screen name="index" options={{headerShown: false}}/>
+                    <Stack.Screen name="welcome/index" options={{headerShown: false}}/>
+                    <Stack.Screen name="(auth)/sign-in/index" options={{headerShown: false}}/>
                 </Stack>
-
 
             </AnimatedSplash>
 

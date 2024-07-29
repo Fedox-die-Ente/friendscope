@@ -35,7 +35,7 @@ const SplashScreenComponent = () => {
         <View className={'flex-1 items-center justify-center relative'}>
             <StarsSvg className={'absolute'}/>
             <View className={'justify-center items-center space-y-5'}>
-                <LogoSvg/>
+                <LogoSvg className={'fill-white'}/>
                 <Text className={'text-heading-2 w-full text-other-white font-urbanist_bold z-'}>FriendScope</Text>
                 <Animated.View style={animatedStyle}>
                     <LoadingSvg />
