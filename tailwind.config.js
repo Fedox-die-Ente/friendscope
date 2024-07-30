@@ -68,7 +68,7 @@ module.exports = {
                     orange: "#FFF7EB"
                 },
                 transparent: {
-                    purple: "rgba(150, 16, 255, 0.8)",
+                    purple: "rgba(150, 16, 255, 0.1)",
                     green: "rgba(18, 209, 142, 0.8)",
                     blue: "rgba(35, 93, 255, 0.8)",
                     red: "rgba(254, 51, 35, 0.8)",

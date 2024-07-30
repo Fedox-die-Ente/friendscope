@@ -6,10 +6,11 @@ interface Props {
     handlePress: () => void;
     containerClasses?: string;
     textClasses?: string;
+    disabled?: boolean;
     type: 'primary' | 'secondary';
 }
 
-const CustomButton = ({title, handlePress, textClasses, containerClasses, type}: Props) => {
+const CustomButton = ({title, handlePress, textClasses, containerClasses, type, disabled}: Props) => {
     return (
         <TouchableOpacity onPress={handlePress}
                           className={`${type === 'primary' ? `bg-primary p-4 rounded-full w-full` : 'bg-background-purple dark:bg-darkColors-dark_5 p-4 rounded-full'} ${containerClasses}`}>
