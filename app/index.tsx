@@ -27,6 +27,10 @@ const Page = () => {
         {
             title: 'Create Password',
             href: '/(auth)/forgot-password/create-password'
+        },
+        {
+            title: "Testing Page",
+            href: "/test"
         }
     ]
 

@@ -52,6 +52,7 @@ const RootLayout = () => {
                     <Stack.Screen name="(auth)/forgot-password/index" options={{headerShown: false}}/>
                     <Stack.Screen name="(auth)/forgot-password/otp/index" options={{headerShown: false}}/>
                     <Stack.Screen name="(auth)/forgot-password/create-password/index" options={{headerShown: false}}/>
+                    <Stack.Screen name="test/index" options={{headerShown: false}}/>
                 </Stack>
 
             </AnimatedSplash>
